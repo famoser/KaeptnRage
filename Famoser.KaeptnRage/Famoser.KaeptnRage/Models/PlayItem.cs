@@ -9,6 +9,7 @@ namespace Famoser.KaeptnRage.Models
     public class PlayItem
     {
         public string Name { get; set; }
+        public string Length { get; set; }
         public string FileName { get; set; }
     }
 }
