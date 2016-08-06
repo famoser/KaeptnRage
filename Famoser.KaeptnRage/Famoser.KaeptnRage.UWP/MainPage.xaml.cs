@@ -21,7 +21,7 @@ namespace Famoser.KaeptnRage.UWP
         {
             this.InitializeComponent();
 
-            LoadApplication(new Famoser.KaeptnRage.App());
+            LoadApplication(new View.App());
         }
     }
 }

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Famoser.KaeptnRage.Pages;
+﻿using Famoser.KaeptnRage.View.Pages;
 using Xamarin.Forms;
 
-namespace Famoser.KaeptnRage
+namespace Famoser.KaeptnRage.View
 {
     public class App : Application
     {

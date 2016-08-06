@@ -28,7 +28,7 @@ namespace Famoser.KaeptnRage.WinPhone
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
-            LoadApplication(new Famoser.KaeptnRage.App());
+            LoadApplication(new View.App());
         }
 
         /// <summary>

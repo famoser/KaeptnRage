@@ -162,9 +162,9 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Famoser.KaeptnRage\Famoser.KaeptnRage.csproj">
+    <ProjectReference Include="..\Famoser.KaeptnRage\Famoser.KaeptnRage.View.csproj">
       <Project>{4F95610B-8912-49C5-8FEA-B7EDA8BEF228}</Project>
-      <Name>Famoser.KaeptnRage</Name>
+      <Name>Famoser.KaeptnRage.View</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

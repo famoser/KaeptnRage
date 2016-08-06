@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Famoser.FrameworkEssentials.View.Commands;
-using Famoser.KaeptnRage.Models;
-using Famoser.KaeptnRage.ViewModels.Base;
+using Famoser.KaeptnRage.View.Models;
+using Famoser.KaeptnRage.View.ViewModels.Base;
 
-namespace Famoser.KaeptnRage.ViewModels
+namespace Famoser.KaeptnRage.View.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
@@ -25,19 +20,19 @@ namespace Famoser.KaeptnRage.ViewModels
                 new PlayItem()
                 {
                     Name = "File1",
-                    Length = "2:23",
+                    Author = "2:23",
                     FileName = "file1.mp4"
                 },
                 new PlayItem()
                 {
                     Name = "File2",
-                    Length = "1:23",
+                    Author = "1:23",
                     FileName = "file2.mp4"
                 },
                 new PlayItem()
                 {
                     Name = "File3",
-                    Length = "0:23",
+                    Author = "0:23",
                     FileName = "file3.mp4"
                 }
             };

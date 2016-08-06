@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Famoser.KaeptnRage.ViewModels;
+﻿using Famoser.KaeptnRage.View.ViewModels;
 using Xamarin.Forms;
 
-namespace Famoser.KaeptnRage.Pages
+namespace Famoser.KaeptnRage.View.Pages
 {
     public partial class MainPage : ContentPage
     {
