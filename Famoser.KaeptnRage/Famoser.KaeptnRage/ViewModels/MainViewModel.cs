@@ -1,51 +1,43 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Famoser.FrameworkEssentials.View.Commands;
-using Famoser.KaeptnRage.View.Models;
+using Famoser.KaeptnRage.Business.Models;
+using Famoser.KaeptnRage.Business.Repositories.Interfaces;
 using Famoser.KaeptnRage.View.ViewModels.Base;
 
 namespace Famoser.KaeptnRage.View.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        public MainViewModel()
+        private readonly IPlayItemRepository _playItemRepository;
+        public MainViewModel(IPlayItemRepository playItemRepository)
         {
+            _playItemRepository = playItemRepository;
             if (IsInDesignMode)
                 MainText = "Hallo Welt (design)";
             else
                 MainText = "Hallo Welt (not design)";
 
-            PageItems = new ObservableCollection<PlayItem>()
-            {
-                new PlayItem()
-                {
-                    Name = "File1",
-                    Author = "2:23",
-                    FileName = "file1.mp4"
-                },
-                new PlayItem()
-                {
-                    Name = "File2",
-                    Author = "1:23",
-                    FileName = "file2.mp4"
-                },
-                new PlayItem()
-                {
-                    Name = "File3",
-                    Author = "0:23",
-                    FileName = "file3.mp4"
-                }
-            };
-            PlayFileCommand = new LoadingRelayCommand<PlayItem>(PlayFile);
+            PlayModels = _playItemRepository.GetPlayModels();
+            PlayFileCommand = new LoadingRelayCommand<PlayModel>(PlayFile);
+            RefreshCommand = new LoadingRelayCommand(Refresh);
         }
         public string MainText { get; }
-        public ObservableCollection<PlayItem> PageItems { get; set; }
+        public ObservableCollection<PlayModel> PlayModels { get; set; }
 
-        public ICommand PlayFileCommand { get; set; }
+        public ICommand PlayFileCommand { get; }
 
-        private void PlayFile(PlayItem item)
+        private void PlayFile(PlayModel item)
         {
-            
+
+        }
+
+        public ICommand RefreshCommand { get; }
+
+        private async Task Refresh()
+        {
+            await _playItemRepository.RefreshAsync();
         }
     }
 }

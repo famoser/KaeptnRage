@@ -2,7 +2,7 @@
   "dependencies": {
     "Famoser.FrameworkEssentials": "2.7.4",
     "Famoser.FrameworkEssentials.UniversalWindows": "1.2.1",
-    "Famoser.FrameworkEssentials.View": "1.2.2",
+    "Famoser.FrameworkEssentials.View": "1.3.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
     "Xamarin.Forms": "2.3.1.114"
   },
