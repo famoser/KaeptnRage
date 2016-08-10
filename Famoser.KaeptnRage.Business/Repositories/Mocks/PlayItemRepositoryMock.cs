@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Famoser.KaeptnRage.Business.Models;
 using Famoser.KaeptnRage.Business.Repositories.Interfaces;
 
+#pragma warning disable 1998
 namespace Famoser.KaeptnRage.Business.Repositories.Mocks
 {
     public class PlayItemRepositoryMock : IPlayItemRepository
@@ -34,6 +35,11 @@ namespace Famoser.KaeptnRage.Business.Repositories.Mocks
                     FileName = "file3.mp4"
                 }
             };
+        }
+
+        public async Task RefreshAsync()
+        {
+            return;
         }
     }
 }
