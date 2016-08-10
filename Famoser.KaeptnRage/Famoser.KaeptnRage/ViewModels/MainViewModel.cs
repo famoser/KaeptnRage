@@ -20,9 +20,10 @@ namespace Famoser.KaeptnRage.View.ViewModels
                 MainText = "Hallo Welt (not design)";
 
             PlayModels = _playItemRepository.GetPlayModels();
-            PlayFileCommand = new LoadingRelayCommand<PlayModel>(PlayFile);
-            RefreshCommand = new LoadingRelayCommand(Refresh);
+            PlayFileCommand = new LoadingRelayCommand<PlayModel>(t => PlayFile(t));
+            RefreshCommand = new LoadingRelayCommand(Refresh, null, true);
         }
+
         public string MainText { get; }
         public ObservableCollection<PlayModel> PlayModels { get; set; }
 
