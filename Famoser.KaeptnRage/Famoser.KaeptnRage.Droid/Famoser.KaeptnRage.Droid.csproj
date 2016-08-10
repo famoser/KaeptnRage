@@ -171,6 +171,14 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Famoser.KaeptnRage.Business\Famoser.KaeptnRage.Business.csproj">
+      <Project>{238d485a-18b2-492d-a18b-2dae9f16f707}</Project>
+      <Name>Famoser.KaeptnRage.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Famoser.KaeptnRage.Data\Famoser.KaeptnRage.Data.csproj">
+      <Project>{9e073b7e-0d26-4746-adb5-7f81294415d6}</Project>
+      <Name>Famoser.KaeptnRage.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Famoser.KaeptnRage\Famoser.KaeptnRage.View.csproj">
       <Project>{4F95610B-8912-49C5-8FEA-B7EDA8BEF228}</Project>
       <Name>Famoser.KaeptnRage.View</Name>
