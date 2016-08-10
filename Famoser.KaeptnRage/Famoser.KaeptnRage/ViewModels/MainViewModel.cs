@@ -20,7 +20,7 @@ namespace Famoser.KaeptnRage.View.ViewModels
             if (IsInDesignMode)
                 MainText = "Hallo Welt (design)";
             else
-                MainText = "Hallo Welt (not design)";
+                MainText = "Kaeptn Rage";
 
             PlayModels = _playItemRepository.GetPlayModels();
             PlayFileCommand = new LoadingRelayCommand<PlayModel>(t => PlayFile(t));

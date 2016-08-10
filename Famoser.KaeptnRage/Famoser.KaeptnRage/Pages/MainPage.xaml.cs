@@ -10,7 +10,7 @@ namespace Famoser.KaeptnRage.View.Pages
         public MainPage()
         {
             InitializeComponent();
-
+            
             BindingContext = BaseViewModelLocator.Instance.MainViewModel;
         }
 
@@ -23,6 +23,16 @@ namespace Famoser.KaeptnRage.View.Pages
         private void Refresh(object sender, EventArgs e)
         {
             BaseViewModelLocator.Instance.MainViewModel.RefreshCommand.Execute(null);
+        }
+
+        /// <summary>
+        /// disable annoying selection color
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ListView_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            ((ListView) sender).SelectedItem = null;
         }
     }
 }

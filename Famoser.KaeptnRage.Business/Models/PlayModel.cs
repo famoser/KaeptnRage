@@ -10,10 +10,10 @@ namespace Famoser.KaeptnRage.Business.Models
         public DateTime ChangeDate { get; set; }
 
         [JsonIgnore]
-        public string Name => FileName.Substring(0, FileName.IndexOf("-", StringComparison.Ordinal)).Trim();
+        public string Author => FileName.Substring(0, FileName.IndexOf("-", StringComparison.Ordinal)).Trim();
 
         [JsonIgnore]
-        public string Author
+        public string Name
         {
             get
             {

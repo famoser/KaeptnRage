@@ -2,29 +2,30 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             x:Class="Famoser.KaeptnRage.View.Pages.MainPage">
+  <!--<ContentPage.ToolbarItems>
+    <ToolbarItem Command="{Binding Refresh}" Text="Refresh" />
+  </ContentPage.ToolbarItems>-->
 
-  <StackLayout Padding="0,20,0,0">
-    <Label Text="{Binding MainText}" FontAttributes="Bold" HorizontalOptions="Center" />
-    <ListView x:Name="listView" ItemsSource="{Binding PlayModels}"  >
+  <StackLayout Margin="10,0,0,0">
+    <ListView Header="{Binding MainText}" ItemSelected="ListView_OnItemSelected" ItemsSource="{Binding PlayModels}" RefreshCommand="{Binding RefreshCommand}" IsPullToRefreshEnabled="True" >
       <ListView.ItemTemplate>
         <DataTemplate>
-          <ViewCell Height="30">
-            <Grid>
+          <ViewCell>
+            <Grid Margin="0,0,0,0">
               <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.5*" />
-                <ColumnDefinition Width="0.2*" />
-                <ColumnDefinition Width="0.3*" />
+                <ColumnDefinition Width="6*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
               </Grid.ColumnDefinitions>
-              <Label TextColor="Gray" Text="{Binding Name}" />
-              <Label Grid.Column="1" Text="{Binding Author}" />
-              <Button Grid.Column="2" Clicked="Button_OnClicked" Text="Play!" />
+              <Label Grid.Column="0" TextColor="#444444" VerticalOptions="Center" Text="{Binding Name}" />
+              <Label Grid.Column="1" VerticalOptions="Center" FontSize="16" TextColor="#878787" Text="{Binding Author}" />
+              <Button Grid.Column="2" VerticalOptions="CenterAndExpand" Clicked="Button_OnClicked" Text="ss"
+                      HeightRequest="60" TextColor="White" BackgroundColor="Accent" />
             </Grid>
           </ViewCell>
         </DataTemplate>
       </ListView.ItemTemplate>
     </ListView>
-    <Label Text="{Binding MainText}" FontAttributes="Bold" HorizontalOptions="Center" />
-    <Label Text="{Binding MainText}" FontAttributes="Bold" HorizontalOptions="Center" />
-    <Button  Clicked="Refresh" Text="Refresh!" />
+    <Button Clicked="Refresh" Text="Refresh!" TextColor="White" BorderWidth="0" WidthRequest="200" HorizontalOptions="Center" BackgroundColor="Accent" />
   </StackLayout>
 </ContentPage>

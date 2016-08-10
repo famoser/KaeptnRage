@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Famoser.KaeptnRage.Droid.Implementations;
 using Famoser.KaeptnRage.View;
 
 namespace Famoser.KaeptnRage.Droid
@@ -16,6 +17,9 @@ namespace Famoser.KaeptnRage.Droid
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            
+            PlayService.Context = this;
+            Implementations.StorageService.Context = this;
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());

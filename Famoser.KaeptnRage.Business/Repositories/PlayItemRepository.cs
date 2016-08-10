@@ -32,6 +32,7 @@ namespace Famoser.KaeptnRage.Business.Repositories
         private readonly ObservableCollection<PlayModel> _playModels = new ObservableCollection<PlayModel>();
         public ObservableCollection<PlayModel> GetPlayModels()
         {
+            Initialize();
             return _playModels;
         }
 
