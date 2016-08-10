@@ -4,6 +4,7 @@ using System.Windows.Input;
 using Famoser.FrameworkEssentials.View.Commands;
 using Famoser.KaeptnRage.Business.Models;
 using Famoser.KaeptnRage.Business.Repositories.Interfaces;
+using Famoser.KaeptnRage.View.Services.Interfaces;
 using Famoser.KaeptnRage.View.ViewModels.Base;
 
 namespace Famoser.KaeptnRage.View.ViewModels
@@ -11,9 +12,11 @@ namespace Famoser.KaeptnRage.View.ViewModels
     public class MainViewModel : BaseViewModel
     {
         private readonly IPlayItemRepository _playItemRepository;
-        public MainViewModel(IPlayItemRepository playItemRepository)
+        private readonly IPlayService _playService;
+        public MainViewModel(IPlayItemRepository playItemRepository, IPlayService playService)
         {
             _playItemRepository = playItemRepository;
+            _playService = playService;
             if (IsInDesignMode)
                 MainText = "Hallo Welt (design)";
             else
@@ -31,7 +34,7 @@ namespace Famoser.KaeptnRage.View.ViewModels
 
         private void PlayFile(PlayModel item)
         {
-
+            _playService.StartFilePlay(item.FileName);
         }
 
         public ICommand RefreshCommand { get; }

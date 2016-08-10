@@ -41,6 +41,7 @@
     </Compile>
     <Compile Include="Pages\PageElements\PlayItemTextCell.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Interfaces\PlayService.cs" />
     <Compile Include="ViewModels\BaseViewModelLocator.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
