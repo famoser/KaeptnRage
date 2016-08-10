@@ -24,7 +24,7 @@ namespace Famoser.KaeptnRage.Data.Services
 
         public async Task<FileEntity> GetFileAsync(string fileName)
         {
-            var res = await _httpService.DownloadAsync(new Uri(BaseUrl + "/" + fileName));
+            var res = await _httpService.DownloadAsync(new Uri(BaseUrl + "/sounds/" + fileName));
             var str = await res.GetResponseAsByteArrayAsync();
             return new FileEntity()
             {

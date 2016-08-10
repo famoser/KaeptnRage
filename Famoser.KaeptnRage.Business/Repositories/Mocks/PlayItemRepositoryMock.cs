@@ -18,21 +18,15 @@ namespace Famoser.KaeptnRage.Business.Repositories.Mocks
             {
                 new PlayModel()
                 {
-                    Name = "File1",
-                    Author = "2:23",
-                    FileName = "file1.mp4"
+                    FileName = "Hey nääi - Mario.mp4"
                 },
                 new PlayModel()
                 {
-                    Name = "File2",
-                    Author = "1:23",
-                    FileName = "file2.mp4"
+                    FileName = "Was geht! - Renato.mp4"
                 },
                 new PlayModel()
                 {
-                    Name = "File3",
-                    Author = "0:23",
-                    FileName = "file3.mp4"
+                    FileName = "Hallo Welt - langer muss.mp4"
                 }
             };
         }

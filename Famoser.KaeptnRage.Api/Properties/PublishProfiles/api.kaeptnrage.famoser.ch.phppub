@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <DeleteExistingFiles>False</DeleteExistingFiles>
+    <SkipRemoteFilesCheck>True</SkipRemoteFilesCheck>
+    <publishUrl>ftp.floria74.myhostpoint.ch</publishUrl>
+    <UserName>admin@floria74.myhostpoint.ch</UserName>
+    <_SavePWD>True</_SavePWD>
+    <FtpSitePath>/www/apis/api.kaeptnrage.famoser.ch</FtpSitePath>
+    <FtpPassiveMode>True</FtpPassiveMode>
+    <FtpSecurity>Explicit</FtpSecurity>
+    <WebPublishMethod>FTP</WebPublishMethod>
+  </PropertyGroup>
+</Project>

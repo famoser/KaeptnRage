@@ -2,6 +2,6 @@
 {
     public class BaseViewModel
     {
-        protected bool IsInDesignMode => Xamarin.Forms.Application.Current == null;
+        public static bool IsInDesignMode => Xamarin.Forms.Application.Current == null;
     }
 }

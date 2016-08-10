@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Famoser.FrameworkEssentials.Logging;
+using Famoser.FrameworkEssentials.Services.Base;
 using Famoser.FrameworkEssentials.Services.Interfaces;
 using Famoser.KaeptnRage.Business.Models;
 using Famoser.KaeptnRage.Business.Models.Storage;
@@ -15,7 +17,7 @@ using Nito.AsyncEx;
 
 namespace Famoser.KaeptnRage.Business.Repositories
 {
-    public class PlayItemRepository : IPlayItemRepository
+    public class PlayItemRepository : BaseService, IPlayItemRepository
     {
         private readonly IStorageService _storageService;
         private readonly IDataService _dataService;
@@ -36,62 +38,83 @@ namespace Famoser.KaeptnRage.Business.Repositories
         private bool _isInitialized;
         private readonly AsyncLock _asyncLock = new AsyncLock();
 
-        private async Task Initialize()
+        private Task Initialize()
         {
-            using (await _asyncLock.LockAsync())
+            return Execute(async () =>
             {
-                if (_isInitialized)
-                    return;
-
-                _isInitialized = true;
-                var str = await _storageService.GetCachedTextFileAsync(CacheFileName);
-                var items = JsonConvert.DeserializeObject<StorageModel>(str);
-                foreach (var playModel in items.PlayModels)
+                using (await _asyncLock.LockAsync())
                 {
-                    _playModels.Add(playModel);
+                    if (_isInitialized)
+                        return;
+
+                    _isInitialized = true;
+                    var str = await _storageService.GetCachedTextFileAsync(CacheFileName);
+                    if (!string.IsNullOrEmpty(str))
+                    {
+                        var items = JsonConvert.DeserializeObject<StorageModel>(str);
+                        foreach (var playModel in items.PlayModels)
+                        {
+                            _playModels.Add(playModel);
+                        }
+                    }
                 }
-            }
+            });
         }
 
-        public async Task RefreshAsync()
+        public Task RefreshAsync()
         {
-            await Initialize();
-
-            var files = await _dataService.GetFilesAsync();
-            var currents = new List<PlayModel>(_playModels);
-            var newOnes = new List<FileEntity>();
-            foreach (var fileEntity in files.Files)
+            return Execute(async () =>
             {
-                var oldOne = currents.FirstOrDefault(p => p.FileName == fileEntity.FileName);
-                if (oldOne != null)
-                    currents.Remove(oldOne);
-                else
-                    newOnes.Add(fileEntity);
-            }
+                await Initialize();
 
-            foreach (var playModel in currents)
-            {
-                _playModels.Remove(playModel);
-                await _storageService.DeleteCachedFileAsync(playModel.FileName);
-            }
-
-            foreach (var fileEntity in newOnes)
-            {
-                var entity = await _dataService.GetFileAsync(fileEntity.FileName);
-                await _storageService.SetCachedFileAsync(fileEntity.FileName, entity.Bytes);
-                var model = new PlayModel()
+                var files = await _dataService.GetFilesAsync();
+                var currents = new List<PlayModel>(_playModels);
+                var newOnes = new List<FileEntity>();
+                var refreshOnes = new List<FileEntity>();
+                foreach (var fileEntity in files.Files)
                 {
-                    FileName = fileEntity.FileName,
-                    ChangeDate = fileEntity.ChangeDate
-                };
-                _playModels.Add(model);
-            }
+                    var oldOne = currents.FirstOrDefault(p => p.FileName == fileEntity.FileName);
+                    if (oldOne != null)
+                    {
+                        currents.Remove(oldOne);
+                        if (oldOne.ChangeDate != fileEntity.ChangeDate)
+                            refreshOnes.Add(fileEntity);
+                    }
+                    else
+                        newOnes.Add(fileEntity);
+                }
 
-            var sm = new StorageModel()
-            {
-                PlayModels = new List<PlayModel>(_playModels)
-            };
-            await _storageService.SetCachedTextFileAsync(CacheFileName, JsonConvert.SerializeObject(sm));
+                foreach (var playModel in currents)
+                {
+                    _playModels.Remove(playModel);
+                    await _storageService.DeleteCachedFileAsync(playModel.FileName);
+                }
+
+                foreach (var fileEntity in refreshOnes)
+                {
+                    var entity = await _dataService.GetFileAsync(fileEntity.FileName);
+                    await _storageService.SetCachedFileAsync(fileEntity.FileName, entity.Bytes);
+                }
+
+                foreach (var fileEntity in newOnes)
+                {
+                    var entity = await _dataService.GetFileAsync(fileEntity.FileName);
+                    await _storageService.SetCachedFileAsync(fileEntity.FileName, entity.Bytes);
+                    var model = new PlayModel()
+                    {
+                        FileName = fileEntity.FileName,
+                        ChangeDate = fileEntity.ChangeDate
+                    };
+                    _playModels.Add(model);
+                }
+
+                var sm = new StorageModel()
+                {
+                    PlayModels = new List<PlayModel>(_playModels)
+                };
+
+                await _storageService.SetCachedTextFileAsync(CacheFileName, JsonConvert.SerializeObject(sm));
+            });
         }
     }
 }

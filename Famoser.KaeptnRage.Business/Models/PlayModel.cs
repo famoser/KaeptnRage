@@ -10,10 +10,19 @@ namespace Famoser.KaeptnRage.Business.Models
         public DateTime ChangeDate { get; set; }
 
         [JsonIgnore]
-        public string Name => FileName.Substring(0, FileName.IndexOf("-", StringComparison.Ordinal));
+        public string Name => FileName.Substring(0, FileName.IndexOf("-", StringComparison.Ordinal)).Trim();
 
         [JsonIgnore]
-        public string Author => FileName.Substring(FileName.IndexOf("-", StringComparison.Ordinal) + 1);
+        public string Author
+        {
+            get
+            {
+                //split name
+                var temp = FileName.Substring(FileName.IndexOf("-", StringComparison.Ordinal) + 1).Trim();
+                //split file extension
+                return temp.Substring(0, temp.LastIndexOf(".", StringComparison.Ordinal));
+            }
+        }
 
     }
 }

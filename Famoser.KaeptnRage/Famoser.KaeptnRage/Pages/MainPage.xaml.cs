@@ -1,4 +1,6 @@
-﻿using Famoser.KaeptnRage.View.ViewModels;
+﻿using System;
+using Famoser.KaeptnRage.View.ViewModels;
+using GalaSoft.MvvmLight.Ioc;
 using Xamarin.Forms;
 
 namespace Famoser.KaeptnRage.View.Pages
@@ -9,7 +11,18 @@ namespace Famoser.KaeptnRage.View.Pages
         {
             InitializeComponent();
 
-            BindingContext = new MainViewModel();
+            BindingContext = BaseViewModelLocator.Instance.MainViewModel;
+        }
+
+        private void Button_OnClicked(object sender, EventArgs e)
+        {
+            var butt = sender as Button;
+            BaseViewModelLocator.Instance.MainViewModel.PlayFileCommand.Execute(butt?.BindingContext);
+        }
+
+        private void Refresh(object sender, EventArgs e)
+        {
+            BaseViewModelLocator.Instance.MainViewModel.RefreshCommand.Execute(null);
         }
     }
 }

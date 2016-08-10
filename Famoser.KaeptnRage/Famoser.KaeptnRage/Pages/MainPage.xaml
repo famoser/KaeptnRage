@@ -1,20 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            xmlns:viewModel="using:Famoser.KaeptnRage.ViewModels"
-            xmlns:viewModels="clr-namespace:Famoser.KaeptnRage.ViewModels;assembly=Famoser.KaeptnRage"
             x:Class="Famoser.KaeptnRage.View.Pages.MainPage">
 
-  
-  <ScrollView>
-    <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
-    <ListView ItemsSource="{Binding PageItems}" x:Name="pageListView">
+  <StackLayout Padding="0,20,0,0">
+    <Label Text="{Binding MainText}" FontAttributes="Bold" HorizontalOptions="Center" />
+    <ListView x:Name="listView" ItemsSource="{Binding PlayModels}"  >
       <ListView.ItemTemplate>
         <DataTemplate>
-          <TextCell Text="{Binding Name}"
-                    Detail="{Binding Author}"  />
+          <ViewCell Height="30">
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="0.2*" />
+                <ColumnDefinition Width="0.3*" />
+              </Grid.ColumnDefinitions>
+              <Label TextColor="Gray" Text="{Binding Name}" />
+              <Label Grid.Column="1" Text="{Binding Author}" />
+              <Button Grid.Column="2" Clicked="Button_OnClicked" Text="Play!" />
+            </Grid>
+          </ViewCell>
         </DataTemplate>
       </ListView.ItemTemplate>
     </ListView>
-  </ScrollView>
+    <Label Text="{Binding MainText}" FontAttributes="Bold" HorizontalOptions="Center" />
+    <Label Text="{Binding MainText}" FontAttributes="Bold" HorizontalOptions="Center" />
+    <Button  Clicked="Refresh" Text="Refresh!" />
+  </StackLayout>
 </ContentPage>
