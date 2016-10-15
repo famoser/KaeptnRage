@@ -3,7 +3,7 @@
 include __DIR__ ."/Classes/FileEntity.php";
 include __DIR__ ."/Classes/FilesResponse.php";
 
-$files = glob(__DIR__ . '/sounds/*.*');
+$files = glob(__DIR__ . '/public/sounds/*.*');
 $res = new FilesResponse();
 foreach ($files as $file)
 {
