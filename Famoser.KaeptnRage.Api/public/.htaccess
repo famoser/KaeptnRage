@@ -20,7 +20,7 @@ RewriteCond %{REQUEST_URI} !images/(.*)\.
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.php [L]
-RewriteCond %{REQUEST_URI} !^/getaudio.php?.$
+RewriteCond %{REQUEST_URI} !^/submit.php?$
 
 AddDefaultCharset UTF-8
 
@@ -41,6 +41,6 @@ ExpiresByType application/pdf "access plus 1 month"
 ExpiresByType text/x-javascript "access plus 1 month"
 ExpiresByType application/x-shockwave-flash "access plus 1 month"
 ExpiresByType image/x-icon "access plus 1 year"
-ExpiresDefault "access plus 2 days"
+ExpiresDefault "access plus 1 hour"
 </IfModule>
 ## EXPIRES CACHING ##
