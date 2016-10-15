@@ -5,6 +5,7 @@
 body {
     background-color: #9e1a1a;
     padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 hr {
@@ -15,18 +16,8 @@ hr {
     background: white;
 }
 
-.header {
-    padding: 40px;
-}
 
-.content {
-    padding-left: 40px;
-    padding-right: 40px;
-}
 
-h1 {
-    font-size: 5em;
-}
 
 blockquote {
     background: #f9f9f9;
@@ -52,5 +43,41 @@ blockquote p {
 .sound-inner {
     background: rgb(208, 208, 208);
     padding-bottom: 5px;
-    margin-bottom: 40px;
+}
+
+
+.header {
+    padding: 10px;
+}
+
+.content {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+.sound-inner {
+    margin-bottom: 10px;
+}
+
+@media (min-width: 1200px) {
+    .header {
+        padding: 40px;
+    }
+
+    .content {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    h1 {
+        font-size: 5em;
+    }
+
+    .sound-inner {
+        margin-bottom: 40px;
+    }
 }
