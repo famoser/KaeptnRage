@@ -2,6 +2,10 @@
     width: 100%;
 }
 
+.sound {
+    width: 31%;
+}
+
 body {
     background-color: #9e1a1a;
     padding-top: 40px;
@@ -15,9 +19,6 @@ hr {
 .container {
     background: white;
 }
-
-
-
 
 blockquote {
     background: #f9f9f9;
@@ -47,7 +48,7 @@ blockquote p {
 
 
 .header {
-    padding: 10px;
+    padding: 10px 10px 0;
 }
 
 .content {
@@ -65,7 +66,7 @@ h1 {
 
 @media (min-width: 1200px) {
     .header {
-        padding: 40px;
+        padding: 40px 40px 0;
     }
 
     .content {
@@ -80,4 +81,25 @@ h1 {
     .sound-inner {
         margin-bottom: 40px;
     }
+}
+
+.select-buttons {
+    padding-left: 40px;
+    padding-bottom: 40px;
+}
+
+.select-button {
+    background: #9e1a1a;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    padding: 15px 20px;
+    margin-right: 20px;
+}
+
+.select-button:hover, .select-button.selected {
+    background: #ffffff;
+    color: #9e1a1a;
+    border: 1px solid #9e1a1a;
+
 }
