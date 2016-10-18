@@ -1,7 +1,9 @@
-﻿namespace Famoser.KaeptnRage.View.ViewModels.Base
+﻿using GalaSoft.MvvmLight;
+
+namespace Famoser.KaeptnRage.View.ViewModels.Base
 {
-    public class BaseViewModel
+    public class BaseViewModel : ViewModelBase
     {
-        public static bool IsInDesignMode => Xamarin.Forms.Application.Current == null;
+        public static bool IsInDesignModeXamarin => Xamarin.Forms.Application.Current == null;
     }
 }

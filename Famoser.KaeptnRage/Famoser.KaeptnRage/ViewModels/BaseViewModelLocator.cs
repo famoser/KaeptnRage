@@ -20,7 +20,7 @@ namespace Famoser.KaeptnRage.View.ViewModels
     {
         public BaseViewModelLocator()
         {
-            if (BaseViewModel.IsInDesignMode)
+            if (BaseViewModel.IsInDesignModeXamarin)
             {
                 SimpleIoc.Default.Register<IPlayItemRepository, PlayItemRepositoryMock>();
             }

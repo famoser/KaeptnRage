@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Dynamic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Famoser.FrameworkEssentials.View.Commands;
@@ -25,6 +26,7 @@ namespace Famoser.KaeptnRage.View.ViewModels
             PlayModels = _playItemRepository.GetPlayModels();
             PlayFileCommand = new LoadingRelayCommand<PlayModel>(t => PlayFile(t));
             RefreshCommand = new LoadingRelayCommand(Refresh, null, true);
+            RefreshCommand.Execute(null);
         }
 
         public string MainText { get; }
@@ -35,6 +37,13 @@ namespace Famoser.KaeptnRage.View.ViewModels
         private void PlayFile(PlayModel item)
         {
             _playService.StartFilePlay(item.FileName);
+        }
+
+        private bool _isRefreshing;
+        public bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set { Set(ref _isRefreshing, value); }
         }
 
         public ICommand RefreshCommand { get; }

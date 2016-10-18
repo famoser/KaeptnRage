@@ -7,25 +7,27 @@
   </ContentPage.ToolbarItems>-->
 
   <StackLayout Margin="10,0,0,0">
-    <ListView Header="{Binding MainText}" ItemSelected="ListView_OnItemSelected" ItemsSource="{Binding PlayModels}" RefreshCommand="{Binding RefreshCommand}" IsPullToRefreshEnabled="True" >
+    <Label Text="KaeptnRage" TextColor="#444444" FontSize="Large" HorizontalTextAlignment="Start" />
+    <Label Text="a crossplatform rage © solution" TextColor="#444444" FontSize="Small" Margin="0,0,0,20"/>
+    <ListView ItemSelected="ListView_OnItemSelected" ItemsSource="{Binding PlayModels}" RefreshCommand="{Binding RefreshCommand}" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}">
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
             <Grid Margin="0,0,0,0">
               <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5" />
                 <ColumnDefinition Width="6*" />
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="3*" />
               </Grid.ColumnDefinitions>
-              <Label Grid.Column="0" TextColor="#444444" VerticalOptions="Center" Text="{Binding Name}" />
-              <Label Grid.Column="1" VerticalOptions="Center" FontSize="16" TextColor="#878787" Text="{Binding Author}" />
-              <Button Grid.Column="2" VerticalOptions="CenterAndExpand" Clicked="Button_OnClicked" Text="ss"
-                      HeightRequest="60" TextColor="White" BackgroundColor="Accent" />
+              <Label Grid.Column="1" TextColor="#444444" VerticalOptions="Center" Text="{Binding Name}" />
+              <Label Grid.Column="2" VerticalOptions="Center" FontSize="16" TextColor="#878787" Text="{Binding Author}" />
+              <Button Grid.Column="3" VerticalOptions="CenterAndExpand" Clicked="Button_OnClicked" Text="play"
+                      HeightRequest="60" TextColor="White" BackgroundColor="#9e1a1a"  />
             </Grid>
           </ViewCell>
         </DataTemplate>
       </ListView.ItemTemplate>
     </ListView>
-    <Button Clicked="Refresh" Text="Refresh!" TextColor="White" BorderWidth="0" WidthRequest="200" HorizontalOptions="Center" BackgroundColor="Accent" />
   </StackLayout>
 </ContentPage>
