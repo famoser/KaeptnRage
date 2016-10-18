@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Famoser.FrameworkEssentials.Helpers;
 using Famoser.FrameworkEssentials.Logging;
 using Famoser.FrameworkEssentials.Services.Base;
 using Famoser.FrameworkEssentials.Services.Interfaces;
@@ -17,7 +18,7 @@ using Nito.AsyncEx;
 
 namespace Famoser.KaeptnRage.Business.Repositories
 {
-    public class PlayItemRepository : BaseService, IPlayItemRepository
+    public class PlayItemRepository : BaseHelper, IPlayItemRepository
     {
         private readonly IStorageService _storageService;
         private readonly IDataService _dataService;
@@ -39,32 +40,29 @@ namespace Famoser.KaeptnRage.Business.Repositories
         private bool _isInitialized;
         private readonly AsyncLock _asyncLock = new AsyncLock();
 
-        private Task Initialize()
+        private async Task Initialize()
         {
-            return Execute(async () =>
+            using (await _asyncLock.LockAsync())
             {
-                using (await _asyncLock.LockAsync())
-                {
-                    if (_isInitialized)
-                        return;
+                if (_isInitialized)
+                    return;
 
-                    _isInitialized = true;
-                    var str = await _storageService.GetCachedTextFileAsync(CacheFileName);
-                    if (!string.IsNullOrEmpty(str))
+                _isInitialized = true;
+                var str = await _storageService.GetCachedTextFileAsync(CacheFileName);
+                if (!string.IsNullOrEmpty(str))
+                {
+                    var items = JsonConvert.DeserializeObject<StorageModel>(str);
+                    foreach (var playModel in items.PlayModels)
                     {
-                        var items = JsonConvert.DeserializeObject<StorageModel>(str);
-                        foreach (var playModel in items.PlayModels)
-                        {
-                            _playModels.Add(playModel);
-                        }
+                        _playModels.Add(playModel);
                     }
                 }
-            });
+            }
         }
 
         public Task RefreshAsync()
         {
-            return Execute(async () =>
+            return ExecuteSafe(async () =>
             {
                 await Initialize();
 

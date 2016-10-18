@@ -5,10 +5,10 @@ using Famoser.KaeptnRage.View.Services.Interfaces;
 using GalaSoft.MvvmLight.Ioc;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(PlatformHook))]
+[assembly: Dependency(typeof(UwpPlatformHook))]
 namespace Famoser.KaeptnRage.UWP.Implementations
 {
-    public class PlatformHook : IPlatformHook
+    public class UwpPlatformHook : IPlatformHook
     {
         public void RegisterServices()
         {

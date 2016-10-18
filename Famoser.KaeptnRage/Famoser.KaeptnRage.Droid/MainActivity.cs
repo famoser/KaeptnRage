@@ -8,6 +8,9 @@ using Android.Widget;
 using Android.OS;
 using Famoser.KaeptnRage.Droid.Implementations;
 using Famoser.KaeptnRage.View;
+using Famoser.KaeptnRage.View.Services.Interfaces;
+using Famoser.KaeptnRage.View.ViewModels;
+using Xamarin.Forms;
 
 namespace Famoser.KaeptnRage.Droid
 {
@@ -16,12 +19,16 @@ namespace Famoser.KaeptnRage.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(bundle);
-            
             PlayService.Context = this;
             Implementations.StorageService.Context = this;
 
+            DependencyService.Register<IPlatformHook, AndroidPlatformHook>();
+            BaseViewModelLocator.RegisterIPlatform(new AndroidPlatformHook());
+
+            base.OnCreate(bundle);
+
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
             LoadApplication(new App());
         }
     }

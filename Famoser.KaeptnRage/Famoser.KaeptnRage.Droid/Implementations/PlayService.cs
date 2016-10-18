@@ -13,7 +13,7 @@ namespace Famoser.KaeptnRage.Droid.Implementations
         
         public void StartFilePlay(string fileName)
         {
-            var file = new File(fileName);
+            var file = Context.GetFileStreamPath(fileName);
             MediaPlayer mPlayer = MediaPlayer.Create(Context, Uri.FromFile(file));
             mPlayer.Start();
         }

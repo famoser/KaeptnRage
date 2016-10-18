@@ -18,6 +18,11 @@ namespace Famoser.KaeptnRage.View.ViewModels
 {
     public class BaseViewModelLocator : SingletonBase<BaseViewModelLocator>
     {
+        private static IPlatformHook _hook;
+        public static void RegisterIPlatform(IPlatformHook hook)
+        {
+            _hook = hook;
+        }
         public BaseViewModelLocator()
         {
             if (BaseViewModel.IsInDesignModeXamarin)
@@ -28,12 +33,14 @@ namespace Famoser.KaeptnRage.View.ViewModels
             {
                 SimpleIoc.Default.Register<IPlayItemRepository, PlayItemRepository>();
             }
+
+
+            var ph = DependencyService.Get<IPlatformHook>() ?? _hook;
+            ph.RegisterServices();
+
             SimpleIoc.Default.Register<IDataService, DataService>();
 
             SimpleIoc.Default.Register<MainViewModel>();
-
-            var ph = DependencyService.Get<IPlatformHook>();
-            ph.RegisterServices();
         }
 
         public MainViewModel MainViewModel => SimpleIoc.Default.GetInstance<MainViewModel>();
