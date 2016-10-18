@@ -47,7 +47,9 @@ namespace Famoser.KaeptnRage.Droid.Implementations
             return true;
         }
 
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         public async Task<bool> DeleteCachedFileAsync(string filePath)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             Context.DeleteFile(filePath);
             return true;
