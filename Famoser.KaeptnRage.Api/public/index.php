@@ -55,7 +55,7 @@ foreach ($files as $file) {
         <div class="row">
             <div class="col-md-12 header">
                 <h1 id="title">KaeptnRage</h1>
-                <aside>a crossplatform rage © solution | download for <a href="https://github.com/famoser/KaeptnRage/blob/master/Builds/Android/Current/KaeptnRage.apk?raw=true">Android</a></aside>
+                <aside>a crossplatform rage © solution | download for <a href="https://github.com/famoser/KaeptnRage/blob/master/Builds/Android/Current/KaeptnRage.apk?raw=true">Android</a> | <a href="https://github.com/famoser/KaeptnRage/blob/master/Builds/Windows/Current/KaeptnRage.zip?raw=true">Windows</a></aside>
                 <hr/>
             </div>
         </div>
