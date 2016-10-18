@@ -2,9 +2,12 @@
     width: 100%;
 }
 
-.sound {
-    width: 31%;
+@media all and (min-width: 992px) {
+    .sound {
+        width: 31%;
+    }
 }
+
 
 body {
     background-color: #9e1a1a;
@@ -45,7 +48,6 @@ blockquote p {
     background: rgb(208, 208, 208);
     padding-bottom: 5px;
 }
-
 
 .header {
     padding: 10px 10px 0;
